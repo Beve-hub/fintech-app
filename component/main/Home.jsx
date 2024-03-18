@@ -8,6 +8,10 @@ import {
   FlatList,
   StyleSheet,
   ScrollView,
+  Dimensions,
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
@@ -18,7 +22,11 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
+import DialPad from '../Data/DialPad';
+import MoneyInput from 'react-native-money-input'
 
+const {width} = Dimensions.get('window')
 
 const transactionData = [
   {
@@ -40,7 +48,7 @@ const transactionData = [
     image: require("../../assets/image/image_pro3.png"),
     name: "Kingsley Abiodun",
     amount: "10,000",
-    status: 'fail'
+    status: 'failed'
   },
   {
     id: 4,
@@ -51,8 +59,29 @@ const transactionData = [
   },
 ];
 
+const AmountLength  = 6;
+const AmountContainerSize = width /2;
+const AmountSize = AmountContainerSize / AmountLength;
+const AmountSpacing = 10;
+const AmountSizeWithSpacing = AmountSize - AmountSpacing * 2
+
+
+
 const Home = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [amount, setAmount] = useState([]);
+  console.log(amount)
+
+
+  const openModal = () => {
+      setModal(true);
+  }
+
+  const closeModal = () => {
+      setModal(false);
+  }
+
 
   useEffect(() => {
     getUserDetails();
@@ -83,7 +112,7 @@ const Home = ({ navigation }) => {
         amountColor = '#FAAD39';  
         statusIcon = <Ionicons name="hourglass" size={14} color="white" />;             
         break; 
-        case 'fail' : 
+        case 'failed' : 
         amountColor = '#FE4A54';  
         statusIcon = <Ionicons name="close-circle" size={14} color="white" />;
         break;   
@@ -91,12 +120,15 @@ const Home = ({ navigation }) => {
         amountColor = 'white';  
     }
     return (
-      <View style={{ flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding:10, backgroundColor:'#858EC550'}}>
-        <View style={{ flexDirection: "row", display: "flex", alignItems: "center",  gap: 10,}}>
+      <View style={{ flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding:15, backgroundColor:'#858EC550',}}>
+        <View style={{ flexDirection: "row", display: "flex", alignItems: "center",  gap: 15,}}>
         <Image source={item.image} style={{width:wp(10),height:wp(10)}}/>
-        <View>
+        <View style={{gap:10}}>
         <Text style={{color:'#858EC5', fontWeight:'bold',fontSize:16}}>{item.name}</Text>
-        <Text style={{...styles.amount, backgroundColor: amountColor, color:'#fff',flexDirection:'row', display:'flex', alignItems:'center',justifyContent:'center', padding:5,borderRadius:20}}>{statusIcon}<Text>{item.status}</Text></Text>
+        <View style={{...styles.amount, backgroundColor: amountColor, flexDirection:'row', display:'flex', alignItems:'center', justifyContent:'flex-start',  paddingLeft:15, paddingVertical:2, gap:5, borderRadius:20}}>
+        <Text >{statusIcon}</Text>
+        <Text style={{color:'#fff'}}>{item.status}</Text>
+        </View>
         </View>
         </View>                
         <Text style={{...styles.amount, color: amountColor,fontWeight:'bold'}}><FontAwesome6 name="naira-sign" size={12}/> {item.amount}</Text>
@@ -110,6 +142,7 @@ const Home = ({ navigation }) => {
         backgroundColor: "#010A43",
         width: wp("100%"),
         height: hp("150%"),   
+
       }}
     >
       <StatusBar style="light" />
@@ -216,6 +249,7 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
+            onPress={openModal}
             style={{
               color: "#fff",
               paddingHorizontal: 30,
@@ -304,11 +338,68 @@ const Home = ({ navigation }) => {
             data={transactionData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString}
-            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={true}
             contentContainerStyle={{gap:10, paddingVertical:20,}}
           />
       
+      
       </View>
+
+
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {
+           setModal(!modal);
+        }}
+        style={{flexDirection: "grid",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor:'#121212',
+         height:hp('100%')}}>
+
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+
+
+        <View style={{flexDirection: "grid",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",backgroundColor:'#121212', height:hp('100%')}}>
+          <View  style={{  flexDirection: "row",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",marginTop:30}}>
+            <TouchableOpacity             
+              onPress={() => setModal(!modal)}>
+              <MaterialIcons name="cancel" size={35} color="white" />
+            </TouchableOpacity>
+          </View>
+        
+          <View style={{backgroundColor:'#10194E',height:hp('70%'),width:wp('100%'),marginTop:40}}>
+            <View style={{flexDirection: 'row',display:'flex',alignItems:'center',justifyContent:'center' }}>
+            <FontAwesome6 name="naira-sign" size={50} color="#fff" />
+            <MoneyInput onTextChange={(item) => setAmount(item)} autoFocus={false}  style={{fontSize: 60, fontWeight: 'bold', color: 'white', borderWidth: 0}} />           
+            </View>
+
+           <DialPad onPress={(item) => {
+            if (item === 'del') {
+              setAmount((prev) => prev.slice(0, prev.length - 1))
+            } else if (typeof item === 'number') {
+              if (amount.length === AmountLength) return 
+              setAmount((prev) => [...prev, item])
+            }
+           }} /> 
+               
+               <TouchableOpacity style={{backgroundColor:'#FF2E63'}}>         
+                  <Text style={{color:'white'}}>Send money</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -328,12 +419,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  income: {
-    color: 'green',
-  },
-  expense: {
-    color: 'red',
-  },
+  
 });
 
 export default Home;

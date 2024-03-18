@@ -10,6 +10,7 @@ import Send from './component/main/Send';
 import Request from './component/main/Request';
 
 
+
 const Stack = createStackNavigator();
 
 
@@ -22,8 +23,7 @@ const Auth = () => {
         <Stack.Screen name="Board" component={Board} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
-        
-        <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
+       <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
         <Stack.Screen name="Request" component={Request} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </ NavigationContainer >
