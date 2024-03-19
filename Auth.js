@@ -18,12 +18,12 @@ const Auth = () => {
   return (
     < NavigationContainer >
       <Stack.Navigator>
+      <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name="Boarding" component={Boarding} options={{ headerShown: false }}/>
         <Stack.Screen name="Board" component={Board} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
-       <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
+        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>      
         <Stack.Screen name="Request" component={Request} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </ NavigationContainer >

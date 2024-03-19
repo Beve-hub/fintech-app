@@ -9,7 +9,7 @@ import {
 import React from 'react'
 import { Feather } from "@expo/vector-icons";
 
-const dialPad = [1,2,3,4,5,6,7,8,9,'.',0,'del'];
+const dialPad = [1,2,3,4,5,6,7,8,9,'',0,'del'];
 const {width} = Dimensions.get('window')
 const dialPadSize = width * 0.2
 const dialPadFontSize = dialPadSize * 0.4
@@ -17,13 +17,14 @@ const dialPadFontSize = dialPadSize * 0.4
 
 const DialPad = ({ onPress }) => {
   return (
-    <View style={{flex:1, justifyContent:'center',alignItems:'center'}}>
+    <View style={{flex:1, justifyContent:'center',alignItems:'center',marginTop:30}}>
     <FlatList
     data={dialPad}
     keyExtractor={(_, index) => index.toString()}
     numColumns={3} 
+    showsVerticalScrollIndicator={false}
     columnWrapperStyle={{gap: 25}}
-    contentContainerStyle={{gap:25}}
+    contentContainerStyle={{gap:18}}
     renderItem={({item}) => {
       return (
         <TouchableOpacity onPress={() => onPress(item)} item={item}>

@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-  FlatList,
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  Modal,
-  TouchableWithoutFeedback,
-  Keyboard
-} from "react-native";
+  View, Text, TouchableOpacity, Image, SafeAreaView, FlatList,
+  StyleSheet,  ScrollView, Dimensions, Modal, TouchableWithoutFeedback, Keyboard} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -25,6 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 import DialPad from '../Data/DialPad';
 import MoneyInput from 'react-native-money-input'
+import Loader from "../Data/Loader";
 
 const {width} = Dimensions.get('window')
 
@@ -59,21 +49,39 @@ const transactionData = [
   },
 ];
 
-const AmountLength  = 6;
-const AmountContainerSize = width /2;
-const AmountSize = AmountContainerSize / AmountLength;
-const AmountSpacing = 10;
-const AmountSizeWithSpacing = AmountSize - AmountSpacing * 2
 
 
 
 const Home = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [modal, setModal] = useState(false);
-  const [amount, setAmount] = useState([]);
-  console.log(amount)
+  const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
+  
 
+  const AmountLength  = 10;
 
+  const formatAmountWithCommas = (value) => {
+    // Add commas to every three digits
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const remove = (item) => {
+    if (item === 'del') {
+      setAmount(prevAmount => prevAmount.slice(0, -1));
+    } else {
+      setAmount(prevAmount => prevAmount + item);
+    }
+  }
+
+  const handlePress = (item) => {
+    if (item === 'del') {
+      setAmount((prev) => prev.slice(0, -1));
+    } else if (typeof item === 'number') {
+      if (amount.length === AmountLength) return;
+      setAmount((prev) => prev + item);
+    }
+  };
   const openModal = () => {
       setModal(true);
   }
@@ -339,6 +347,7 @@ const Home = ({ navigation }) => {
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString}
             showsVerticalScrollIndicator={true}
+            VerticalScroll={true}
             contentContainerStyle={{gap:10, paddingVertical:20,}}
           />
       
@@ -361,7 +370,7 @@ const Home = ({ navigation }) => {
         backgroundColor:'#121212',
          height:hp('100%')}}>
 
-          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <Loader visible={loading} />
 
 
         <View style={{flexDirection: "grid",
@@ -373,33 +382,56 @@ const Home = ({ navigation }) => {
               alignItems: "center",
               justifyContent: "center",marginTop:30}}>
             <TouchableOpacity             
+              activeOpacity={0.7}
               onPress={() => setModal(!modal)}>
               <MaterialIcons name="cancel" size={35} color="white" />
             </TouchableOpacity>
           </View>
         
-          <View style={{backgroundColor:'#10194E',height:hp('70%'),width:wp('100%'),marginTop:40}}>
-            <View style={{flexDirection: 'row',display:'flex',alignItems:'center',justifyContent:'center' }}>
-            <FontAwesome6 name="naira-sign" size={50} color="#fff" />
-            <MoneyInput onTextChange={(item) => setAmount(item)} autoFocus={false}  style={{fontSize: 60, fontWeight: 'bold', color: 'white', borderWidth: 0}} />           
-            </View>
+          <View style={{ backgroundColor: '#10194E', height: '85%', width: '100%', marginTop: 40 }}>
 
-           <DialPad onPress={(item) => {
-            if (item === 'del') {
-              setAmount((prev) => prev.slice(0, prev.length - 1))
-            } else if (typeof item === 'number') {
-              if (amount.length === AmountLength) return 
-              setAmount((prev) => [...prev, item])
-            }
-           }} /> 
-               
-               <TouchableOpacity style={{backgroundColor:'#FF2E63'}}>         
-                  <Text style={{color:'white'}}>Send money</Text>
-            </TouchableOpacity>
-          </View>
+          <View style={{marginVertical:20}}>
+     
+      
+          <TouchableOpacity  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <FontAwesome6 name="naira-sign" size={35} color="#fff" />
+            <Text style={{color:'#fff', fontSize:40, fontWeight:'bold'}}>{amount.length === 0 ? '0.00' : formatAmountWithCommas(amount)}</Text>
+          </TouchableOpacity>
+     
+    
+    </View>
+
+    
+        <DialPad remove={remove}
+         onPress={handlePress} />
+   
+
+      <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'center', marginBottom: 50 }}>
+        <TouchableOpacity
+        onPress={() => navigation.navigate('Send')} 
+          activeOpacity={0.7}
+          style={{
+            backgroundColor: '#FF2E63',
+            height: 45,
+            width: '50%',
+            elevation: 10,
+            marginTop: 40,
+            flexDirection: 'row',
+            paddingVertical: 9,
+            display: 'flex',
+            justifyContent: 'center',
+            borderRadius: 10,
+            marginVertical: 10,
+          }}
+        >
+          <Text style={{ color: 'white', fontSize:18 }}>Send money</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
         </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+
+
+        </Modal>
     </SafeAreaView>
   );
 };
