@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   View, Text, TouchableOpacity, Image, SafeAreaView, FlatList,
-  StyleSheet,  ScrollView, Dimensions, Modal, TouchableWithoutFeedback, Keyboard} from "react-native";
+  StyleSheet,  ScrollView, Dimensions, Modal,} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -13,7 +13,6 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 import DialPad from '../Data/DialPad';
-import MoneyInput from 'react-native-money-input'
 import Loader from "../Data/Loader";
 
 const {width} = Dimensions.get('window')
@@ -345,7 +344,7 @@ const Home = ({ navigation }) => {
           <FlatList
             data={transactionData}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString}
+            keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={true}
             VerticalScroll={true}
             contentContainerStyle={{gap:10, paddingVertical:20,}}
@@ -406,27 +405,27 @@ const Home = ({ navigation }) => {
          onPress={handlePress} />
    
 
-      <View style={{ flexDirection: 'row', display: 'flex', justifyContent: 'center', marginBottom: 50 }}>
-        <TouchableOpacity
-        onPress={() => navigation.navigate('Send')} 
-          activeOpacity={0.7}
-          style={{
-            backgroundColor: '#FF2E63',
-            height: 45,
-            width: '50%',
-            elevation: 10,
-            marginTop: 40,
-            flexDirection: 'row',
-            paddingVertical: 9,
-            display: 'flex',
-            justifyContent: 'center',
-            borderRadius: 10,
-            marginVertical: 10,
-          }}
-        >
-          <Text style={{ color: 'white', fontSize:18 }}>Send money</Text>
-        </TouchableOpacity>
-      </View>
+   <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 50 }}>
+  <TouchableOpacity
+    onPress={() => navigation.navigate('Send', { amount: amount })} 
+    activeOpacity={0.7}
+    style={{
+      backgroundColor: '#FF2E63',
+      height: 45,
+      width: '50%',
+      elevation: 10,
+      marginTop: 40,
+      flexDirection: 'row',
+      paddingVertical: 9,
+      justifyContent: 'center',
+      borderRadius: 10,
+      marginVertical: 10,
+    }}
+  >
+    <Text style={{ color: 'white', fontSize: 18 }}>Send Money</Text>
+  </TouchableOpacity>
+</View>
+
     </View>
         </View>
 
