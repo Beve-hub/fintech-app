@@ -165,18 +165,23 @@ const Send = ({route,navigation}) => {
               activeOpacity={0.7}
               onPress={() => setModal(!modal)}
               >
-              <Text style={{color:'#fff',backgroundColor:'#858EC530',paddingHorizontal:10,paddingVertical:5, borderRadius:20, fontSize:16, fontWeight:'bold'}}>X</Text>
+              <Text style={{color:'#fff',backgroundColor:'#858EC530',paddingHorizontal:10, borderRadius:20, fontSize:16, fontWeight:'bold'}}>X</Text>
             </TouchableOpacity>
             </View>
-
+          <View>
+          
+          </View>
 
             <View style={{flexDirection:'grid',display:'grid', alignItems: "center", justifyContent: "center",}}>
+
+            <Text style={{fontWeight:'bold',color:'#fff',fontSize:18, marginLeft:10,paddingVertical:10}}>Payment Summary</Text>
+              
               {selectedItem && (
-                <View style={{flexDirection:'grid',display:'grid', alignItems: "center", justifyContent: "center",gap:10}}>
-                  <Image source={selectedItem.image}/>
-                   <Text style={{color:'#fff',fontSize:14, }}>Acct Name: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}>{selectedItem.name}</Text></Text>
-                   <Text style={{color:'#fff',fontSize:14, }}>Bank Name: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}>{selectedItem.bank}</Text></Text>
-                   <Text style={{color:'#fff',fontSize:14, }}>Acct Number: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}>{selectedItem.details}</Text></Text>
+                <View style={{flexDirection:'grid',display:'grid', alignItems: "center", justifyContent: "center",gap:5}}>
+                  <Image source={selectedItem.image} style={{ width: wp(15), height: wp(15) }} />
+                   <Text style={{color:'#fff',fontSize:14, }}>Acct Name: <Text style={{color:'#fff',fontSize:16, fontWeight:'bold'}}>{selectedItem.name}</Text></Text>
+                   <Text style={{color:'#fff',fontSize:14, }}>Bank Name: <Text style={{color:'#fff',fontSize:16, fontWeight:'bold'}}>{selectedItem.bank}</Text></Text>
+                   <Text style={{color:'#fff',fontSize:14, }}>Acct Number: <Text style={{color:'#fff',fontSize:16, fontWeight:'bold'}}>{selectedItem.details}</Text></Text>
                    
                     <Text style={{color:'#fff',fontSize:14, }}>Amount: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}><FontAwesome6 name="naira-sign" size={18} color="#fff" />{amount}</Text></Text>
                 </View>
@@ -191,7 +196,7 @@ const Send = ({route,navigation}) => {
 
             <View style={{ flexDirection: 'grid', display: 'grid', justifyContent: 'center', alignItems:'center',  }}>
                <TouchableOpacity
-       onPress={() => navigation.navigate('TransactionPin')} 
+       onPress={() => navigation.navigate('TransactionPin',{ selectedItem, amount })} 
          activeOpacity={0.7}  style={{
            backgroundColor: '#FF2E63',
               width: '50%', elevation: 10, marginTop: 40,flexDirection: 'row', paddingVertical: 9, display: 'flex', justifyContent: 'center', borderRadius: 10,    

@@ -9,6 +9,7 @@ import Home from './component/main/Home';
 import Send from './component/main/Send';
 import Request from './component/main/Request';
 import TransactionPin from './component/main/TransactionPin';
+import Receipt from './component/main/Receipt';
 
 
 
@@ -19,9 +20,10 @@ const Auth = () => {
   return (
     < NavigationContainer >
       <Stack.Navigator>
-      <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
-      <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
-       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+        <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>
+        <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
+        <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name="Boarding" component={Boarding} options={{ headerShown: false }}/>
         <Stack.Screen name="Board" component={Board} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
