@@ -13,11 +13,10 @@ const pinLength = 4;
     const pinSpacing = 10;
     const pinSize = pinFullSize - pinSpacing * 2;
 
-const TransactionPin = ({navigation}) => {
+const TransactionPin = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);   
  const [code, setCode] = useState([]);
- console.log(code)
-
+ 
  const remove = (item) => {
     if (item === 'del') {
         setCode(prevAmount => prevAmount.slice(0, -1));
@@ -40,9 +39,12 @@ const TransactionPin = ({navigation}) => {
 
     setTimeout(() => {
       setLoading(false);
-      navigation.navigate('Receipt')
-    }, 10000);
-  }
+      navigation.navigate('Receipt', {
+        amount: route.params['amount'],
+        selectedItem: route.params['selectedItem']
+      } );
+    }, 5000);
+  };
 
   return (
     <View style={{flex:1,justifyContent:'center',alignItems:'center', backgroundColor: "#010A43", paddingVertical:30}}>

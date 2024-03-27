@@ -65,6 +65,9 @@ const Send = ({route,navigation}) => {
   
   const { amount } = route.params || {};
 
+  const formatAmount = (amount) => {
+    return parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  };
 
   useEffect(() => {
     filteredData();
@@ -79,6 +82,7 @@ const Send = ({route,navigation}) => {
 
   const handleSearch = (text) => {
     setSearchData(text);
+     
   };
 
   const openModal = (item) => {
@@ -183,7 +187,7 @@ const Send = ({route,navigation}) => {
                    <Text style={{color:'#fff',fontSize:14, }}>Bank Name: <Text style={{color:'#fff',fontSize:16, fontWeight:'bold'}}>{selectedItem.bank}</Text></Text>
                    <Text style={{color:'#fff',fontSize:14, }}>Acct Number: <Text style={{color:'#fff',fontSize:16, fontWeight:'bold'}}>{selectedItem.details}</Text></Text>
                    
-                    <Text style={{color:'#fff',fontSize:14, }}>Amount: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}><FontAwesome6 name="naira-sign" size={18} color="#fff" />{amount}</Text></Text>
+                    <Text style={{color:'#fff',fontSize:14, }}>Amount: <Text style={{color:'#fff',fontSize:18, fontWeight:'bold'}}><FontAwesome6 name="naira-sign" size={18} color="#fff" />{formatAmount(amount)}</Text></Text>
                 </View>
               )}
 
@@ -196,7 +200,7 @@ const Send = ({route,navigation}) => {
 
             <View style={{ flexDirection: 'grid', display: 'grid', justifyContent: 'center', alignItems:'center',  }}>
                <TouchableOpacity
-       onPress={() => navigation.navigate('TransactionPin',{ selectedItem, amount })} 
+       onPress={() => navigation.navigate('TransactionPin',{amount: amount, selectedItem: selectedItem })} 
          activeOpacity={0.7}  style={{
            backgroundColor: '#FF2E63',
               width: '50%', elevation: 10, marginTop: 40,flexDirection: 'row', paddingVertical: 9, display: 'flex', justifyContent: 'center', borderRadius: 10,    

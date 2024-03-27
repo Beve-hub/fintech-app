@@ -60,9 +60,9 @@ const Home = ({ navigation }) => {
 
   const AmountLength  = 10;
 
-  const formatAmountWithCommas = (value) => {
-    // Add commas to every three digits
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const formatAmountWithCommas = (amount) => {
+   
+    return parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   }
 
   const remove = (item) => {
@@ -80,6 +80,7 @@ const Home = ({ navigation }) => {
       if (amount.length === AmountLength) return;
       setAmount((prev) => prev + item);
     }
+    
   };
   const openModal = () => {
       setModal(true);

@@ -10,6 +10,7 @@ import Send from './component/main/Send';
 import Request from './component/main/Request';
 import TransactionPin from './component/main/TransactionPin';
 import Receipt from './component/main/Receipt';
+import SplashScreen from './component/onboarding/SplashScreen';
 
 
 
@@ -20,7 +21,8 @@ const Auth = () => {
   return (
     < NavigationContainer >
       <Stack.Navigator>
-        <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>
+      
+      <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>        
         <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
         <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
@@ -29,6 +31,7 @@ const Auth = () => {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>      
         <Stack.Screen name="Request" component={Request} options={{ headerShown: false }}/>
+        <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>
         
       </Stack.Navigator>
     </ NavigationContainer >
