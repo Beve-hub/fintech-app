@@ -166,24 +166,7 @@ const Home = ({ navigation }) => {
         }} >
         <View
           style={{
-            flexDirection: "row",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 10,
-          }}
-        >
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={{
-              color: "#fff",
-              backgroundColor: "#212A6B",
-              padding: 10,
-              borderRadius: 20,
-            }}
-          >
-            <Ionicons name="menu-outline" size={24} color="#FF2E63" />
-          </TouchableOpacity>
+            flexDirection: "row", display: "flex",alignItems: "center", justifyContent: "center", gap: 10, }} >        
           <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 18 }}>
             Hello {userDetails?.userName},
           </Text>

@@ -1,13 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Share } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import { StatusBar } from "expo-status-bar";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome6, Entypo } from "@expo/vector-icons";
+import * as Print from 'expo-print';
+
 
 const Receipt = ({ route, navigation, item }) => {
   const [userDetails, setUserDetails] = useState(null);
+  const [pdfUri, setPdfUri] = useState(null);
 
   const { amount,  selectedItem } = route.params || {};
 
@@ -35,9 +38,70 @@ const Receipt = ({ route, navigation, item }) => {
   const time = currentDate.toLocaleTimeString('en-US');
   return `${date} ${time}`;
  }
+
+
  const formatAmount = (amount) => {
   return parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
+
+
+const captureAndShare = async () => {
+  try {
+    const htmlContent = await captureReceiptHTML();
+    const pdfUri = await convertToPDF(htmlContent);
+    await shareReceipt(pdfUri);
+  } catch (error) {
+      console.error("Error capturing and sharing:", error );
+  }
+}
+
+
+const captureReceiptHTML = async () => {
+  try {
+    const snapshot = await viewShotRef.current.capture();
+    const htmlContent = `<html><body><img src="${snapshot}" /></body></html>`
+    return htmlContent;
+  } catch (error) {
+    console.error("Error capturing receipt as PDF:", error);
+    throw error;
+  }
+};
+
+
+const shareReceipt = async (uri) => {
+  try {
+    const result = await Share.share({
+      message: 'Check out my transaction receipt from MoonBank!',
+      url: uri ,
+    });
+
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+               console.log(`Shared via ${result.activityType}`);
+      } else {
+         console.log('Shared successfully');
+      }
+    } else if (result.action === Share.dismissedAction) {
+      console.log('Share dismissed');
+    }
+  } catch (error) {
+    console.error('Error sharing:', error.message);
+  }
+};
+
+
+
+const convertToPDF = async (htmlContent) => {
+  try {
+    const {uri} = await Print.printToFileAsync({html: htmlContent});
+    return uri;
+  } catch (error) {
+    console.error("Error converting HTML to PDF:",error);
+  }
+}
+
+
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#010A43" }}>
 
@@ -92,13 +156,11 @@ const Receipt = ({ route, navigation, item }) => {
         </View>
       </ViewShot>
 
-      <Text style={{ color: 'white', fontSize:10, padding:10, }}>Generated from <Text style={{ fontWeight:'bold' }}>MoonBank</Text> on {formatDateTime()}</Text>
+      <Text style={{ color: '#fff9', fontSize:10, padding:10, }}>Generated from <Text style={{ color: '#fff',fontWeight:'bold' }}>MoonBank</Text> on {formatDateTime()}</Text>
+      
       <TouchableOpacity
-        onPress={() => navigation.navigate('TransactionPin')}
-        activeOpacity={0.7} style={{
-          backgroundColor: '#FF2E63',
-          width: '50%', elevation: 10, marginTop: 40, flexDirection: 'row', paddingVertical: 9, display: 'flex', justifyContent: 'center', borderRadius: 10,
-        }}>
+         onPress={captureAndShare}
+         activeOpacity={0.7} style={{ backgroundColor: '#FF2E63', width: '50%', elevation: 10, marginTop: 40, flexDirection: 'row', paddingVertical: 9, display: 'flex', justifyContent: 'center', borderRadius: 10,}}>
         <Text style={{ color: 'white', fontSize: 14, flexDirection: 'row', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Share</Text>
       </TouchableOpacity>
 
