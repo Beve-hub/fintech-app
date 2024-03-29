@@ -223,6 +223,7 @@ const Home = ({ navigation }) => {
         >
           <TouchableOpacity
             activeOpacity={0.7}
+            onPress={() => navigation.navigate('Request')}
             style={{
               color: "#fff",
               paddingHorizontal: 25,
@@ -382,7 +383,7 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
      
     
-    </View>
+          </View>
 
     
         <DialPad remove={remove}

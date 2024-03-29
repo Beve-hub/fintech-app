@@ -17,6 +17,8 @@ import { Ionicons } from '@expo/vector-icons';
 import Transaction from './component/main/Transaction';
 import { FontAwesome } from '@expo/vector-icons';
 import Profile from './component/main/Profile';
+import CardTransfer from './component/main/CardTransfer';
+import UsdCode from './component/main/UsdCode';
 
 
 const Stack = createStackNavigator();
@@ -27,12 +29,12 @@ function TabGroup() {
   return(
       <Tab.Navigator 
       initialRouteName="Home"
-      activeColor='#6684D2'
+      activeColor='#FF2E63'
       inactiveColor="#CDCDCD"
       activeBackgroundColor="green"
       inactiveBackgroundColor="green"
       style={{ backgroundColor: 'green' }}
-          barStyle={{ backgroundColor: '#fff' }}
+          barStyle={{ backgroundColor: "#010A43" }}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "red",
@@ -44,8 +46,8 @@ function TabGroup() {
           component={Home}
           options={{ title: 'Home',
           tabBarIcon: ({focused}) => {
-              return <Ionicons name={focused ? 'home-outline' : "home"} 
-              size={22} color={focused ? '#6684D2' : "#CDCDCD"}
+              return <Ionicons name={focused ? "home" : 'home-outline'} 
+              size={22} color={focused ? '#FF2E63' : "#CDCDCD"}
                />
           }
       }} />
@@ -54,31 +56,31 @@ function TabGroup() {
     component={Bills}
      options={{ title: 'Bills',
           tabBarIcon: ({focused}) => {
-              return <Ionicons name={focused ? 'card-outline' : "card"}
-              size={22} color={focused ? '#6684D2' : "#CDCDCD"}
+              return <Ionicons name={focused ? "card" : 'card-outline'  }
+              size={22} color={focused ? '#FF2E63' : "#CDCDCD"}
                />
           }
       }}
      />
 
   <Tab.Screen
-     name="Profile"
+     name="Investment"
      component={Investment}
-      options={{ title: 'Transaction',
+      options={{ title: 'Investment',
           tabBarIcon: ({focused}) => {
-              return <Ionicons name={focused ? 'wallet-outline' : "wallet"}
-              size={22} color={focused ? '#6684D2' : "#CDCDCD"}
+              return <Ionicons name={focused ? "wallet" : 'wallet-outline'  }
+              size={22} color={focused ? '#FF2E63' : "#CDCDCD"}
                />
           }
       }}
      />
     <Tab.Screen
-     name="Search"
+     name='Profile'
      component={Profile}
-      options={{ title: 'search',
+      options={{ title: 'Profile',
           tabBarIcon: ({focused}) => {
-              return <FontAwesome name={focused ? 'user-circle-o' : "user-circle"}
-              size={22} color={focused ? '#6684D2' : "#CDCDCD"}
+              return <FontAwesome name={focused ? 'user-circle' : "user-circle-o"}
+              size={22} color={focused ? '#FF2E63' : "#CDCDCD"}
                />
           }
       }}
@@ -93,8 +95,7 @@ function TabGroup() {
 const Auth = () => {
   return (
     < NavigationContainer >
-      <Stack.Navigator>
-      
+      <Stack.Navigator>      
         <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>        
         <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />
         <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
@@ -105,8 +106,9 @@ const Auth = () => {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>      
         <Stack.Screen name="Request" component={Request} options={{ headerShown: false }}/>
-        <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>
-        
+        <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>   
+        <Stack.Screen name="UsdCode" component={UsdCode} options={{ headerShown: false }}/>   
+        <Stack.Screen name="CardTransfer" component={CardTransfer} options={{ headerShown: false }}/>        
       </Stack.Navigator>
     </ NavigationContainer >
   )
