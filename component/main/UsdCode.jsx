@@ -32,8 +32,7 @@ const UsdCode = ({ navigation }) => {
   const copyToClipboard = () => {
     const codeToCopy = JSON.stringify(" *400*000*2356#");
     Clipboard.setString(codeToCopy);
-    alert("Code copied to clipboard!");
-  };
+    };
 
   const AmountLength = 10;
 
@@ -281,7 +280,7 @@ const UsdCode = ({ navigation }) => {
               </View>
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate("Request")}
+                
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -303,7 +302,7 @@ const UsdCode = ({ navigation }) => {
 
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate("Request")}
+                
                 style={{
                   flexDirection: "row",
                   alignItems: "center",

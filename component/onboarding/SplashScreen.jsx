@@ -7,7 +7,7 @@ const SplashScreen = ({navigation}) => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.replace('TabGroup');
+            navigation.replace('Board');
         },4000)
     }, [])
 

@@ -6,6 +6,7 @@ import Button from '../Data/Button';
 import Loader from '../Data/Loader';
 import { StatusBar } from "expo-status-bar";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import CountryPicker from "react-native-country-picker-modal";
 
 
 
@@ -14,9 +15,12 @@ const Register = ({ navigation }) => {
     email: '',
     fullName: '',
     password: '',
+    phoneNumber: '',
+    countryCode: '+1', 
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  
 
   const validate = () => {
     Keyboard.dismiss();
@@ -40,6 +44,14 @@ const Register = ({ navigation }) => {
     } else if (inputs.password.length < 5) {
       valid = false;
       handleError('Minimum password length of 5', 'password');
+    }
+
+    if (!inputs.phoneNumber) {
+      valid = false;
+      handleError('Please input phone number', 'phoneNumber');
+    } else if (!inputs.phoneNumber.match(/^\d+$/)) {
+      valid = false;
+      handleError('Please input a valid phone number', 'phoneNumber');
     }
 
     if (valid) {
@@ -95,10 +107,23 @@ const Register = ({ navigation }) => {
             label="Email"
             placeholder="Email"
             error={errors.email}
-            onFocus={() => {
-              handleError(null, 'email');
-            }}
+            onFocus={() => { handleError(null, 'email'); }}
             onChangeText={(text) => handleOnChange(text, 'email')} />
+
+<Input
+            label="Country Code"
+            placeholder="+1"
+            value={inputs.countryCode}
+            onChangeText={(text) => handleOnChange(text, 'countryCode')} />
+
+          <Input
+            label="Phone Number"
+            placeholder="Phone Number"
+            error={errors.phoneNumber}
+            onFocus={() => {
+              handleError(null, 'phoneNumber');
+            }}
+            onChangeText={(text) => handleOnChange(text, 'phoneNumber')} />
 
           <Input
             label="Password"
@@ -113,7 +138,7 @@ const Register = ({ navigation }) => {
           
 
           <Button title="Continue" onPress={validate} />
-          <Text style={{ textAlign: 'center', fontSize: 16,color:'#fff' }}>Already have an account? <Text onPress={() => navigation.navigate('Login')} style={{ fontWeight: '700', color: '#fff' }}> Sign In </Text> </Text>
+          <Text style={{ textAlign: 'center', fontSize: 14,color:'#fff' }}>Already have an account? <Text onPress={() => navigation.navigate('Login')} style={{ fontWeight: '700', color: '#fff' }}> Sign In </Text> </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
