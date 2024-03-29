@@ -7,10 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp,  heightPercentageToDP as hp,} from "react-native-responsive-screen";
 
 const Request = ({navigation}) => {
   const [userDetails, setUserDetails] = useState(null);
@@ -115,6 +112,20 @@ const Request = ({navigation}) => {
            </View>
            
             <Text style={{ color:'white',fontSize:16,  }}>Debit/Credit Card</Text>
+         </View> 
+         <MaterialCommunityIcons name="chevron-right" size={24} color="white" />
+         </TouchableOpacity>
+
+         <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('CardTransfer')}
+           style={{padding:15, backgroundColor: "#212A6B",  flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:20 ,borderRadius:10,}}>
+          <View style={{  flexDirection:'row',alignItems:'center',justifyContent:'flex-start',gap:20 }}>
+          <View style={{  backgroundColor: '#fff', width: wp(10), height: hp(5), flexDirection:'row',alignItems:'center',justifyContent:'center',borderRadius:20, }}>
+          <MaterialCommunityIcons name="send" size={20} color="black" />
+           </View>
+           
+            <Text style={{ color:'white',fontSize:16,  }}>Request Funds</Text>
          </View> 
          <MaterialCommunityIcons name="chevron-right" size={24} color="white" />
          </TouchableOpacity>

@@ -180,9 +180,7 @@ const Home = ({ navigation }) => {
             borderRadius: 10,
           }}
         >
-          <Text style={{ color: "#426DDC", fontWeight: "bold" }}>
-            Add Money
-          </Text>
+         <Ionicons name="notifications-outline" size={22} color="white" />
         </TouchableOpacity>
       </View>
       <View
@@ -236,7 +234,7 @@ const Home = ({ navigation }) => {
             <Text
               style={{ color: "#426DDC", fontWeight: "bold", fontSize: 16 }}
             >
-              Request money
+              Add Money
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -340,7 +338,7 @@ const Home = ({ navigation }) => {
 
 
 
-      <Modal
+         <Modal
         animationType="slide"
         transparent={true}
         visible={modal}
