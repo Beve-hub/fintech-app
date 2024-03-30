@@ -6,7 +6,7 @@ import Button from '../Data/Button';
 import Loader from '../Data/Loader';
 import { StatusBar } from "expo-status-bar";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import CountryPicker from "react-native-country-picker-modal";
+
 
 
 
@@ -16,7 +16,7 @@ const Register = ({ navigation }) => {
     fullName: '',
     password: '',
     phoneNumber: '',
-    countryCode: '+1', 
+    
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ const Register = ({ navigation }) => {
 
     if (!inputs.userName) {
       valid = false;
-      handleError('Please input userName', 'userName');
+      handleError('Please input fullName', 'fullName');
     }
     if (!inputs.password) {
       valid = false;
@@ -87,16 +87,16 @@ const Register = ({ navigation }) => {
       <Loader visible={loading} />
       <ScrollView
         contentContainerStyle={{
-          paddingTop: 80,
+          paddingTop: 60,
           paddingHorizontal: 20,
         }}>
         <Text style={{ fontSize: 35, fontWeight: '700', color: '#fff' }}>Register</Text>
         <Text style={{ fontSize: 14, fontWeight: '400', color: '#ffff' }}>Your first time, Let's get to know you more!</Text>
 
-        <View style={{ marginVertical: 60 }}>
+        <View style={{ marginVertical: 40 }}>
           <Input
-            label="User Name"
-            placeholder="UserName"
+            label="Full Name"
+            placeholder="fullName"
             error={errors.userName}
             onFocus={() => {
               handleError(null, 'userName');
@@ -109,22 +109,17 @@ const Register = ({ navigation }) => {
             error={errors.email}
             onFocus={() => { handleError(null, 'email'); }}
             onChangeText={(text) => handleOnChange(text, 'email')} />
-
-<Input
-            label="Country Code"
-            placeholder="+1"
-            value={inputs.countryCode}
-            onChangeText={(text) => handleOnChange(text, 'countryCode')} />
-
+      
           <Input
             label="Phone Number"
             placeholder="Phone Number"
             error={errors.phoneNumber}
+            keyboardType="numeric"
             onFocus={() => {
               handleError(null, 'phoneNumber');
             }}
             onChangeText={(text) => handleOnChange(text, 'phoneNumber')} />
-
+       
           <Input
             label="Password"
             placeholder="Password"

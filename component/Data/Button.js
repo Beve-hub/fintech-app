@@ -12,7 +12,7 @@ const Button = ({title, onPress = () => {}}) => {
      elevation: 10, 
     marginTop:40, 
     flexDirection: 'row',
-     backgroundColor:'#ffff40', 
+     backgroundColor:"#FF2E63", 
     paddingVertical: 9, 
      display:'flex', 
     justifyContent:'center', 

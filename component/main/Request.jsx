@@ -13,10 +13,9 @@ const Request = ({navigation}) => {
   const [userDetails, setUserDetails] = useState(null);
 
   const copyToClipboard = () => {
-    const codeToCopy = JSON.stringify(userDetails?.userName + ' 99112345890');
+    const codeToCopy = JSON.stringify( userDetails?.phoneNumber);
     Clipboard.setString(codeToCopy);
-      alert('Code copied to clipboard!');
-  };
+      };
 
   useEffect(() => {
     getUserDetails();
@@ -68,7 +67,7 @@ const Request = ({navigation}) => {
           <Text style={{ color:'white',fontSize:20, fontWeight:'bold' }}>{userDetails?.userName}</Text>
           <View style={{  flexDirection:'row',alignItems:'center',justifyContent:'center',gap:20, paddingVertical:10, }}>
             
-            <Text style={{ color:'white',fontSize:20, fontWeight:'bold' }}>99112345890</Text>
+            <Text style={{ color:'white',fontSize:20, fontWeight:'bold' }}>{userDetails?.phoneNumber}</Text>
             <TouchableOpacity
             activeOpacity={0.7}
             onPress={copyToClipboard}

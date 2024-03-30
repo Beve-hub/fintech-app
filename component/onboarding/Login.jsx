@@ -102,10 +102,10 @@ const Login = ({ navigation }) => {
             onChangeText={text => handleOnChange(text, 'password')}
             password
           />
-          <Text onPress={() => navigation.navigate('ForgotPassword')} style={{ textAlign: 'right', fontSize: 16, color: '#fff' }}>Forgotten Password?</Text>
+          <Text onPress={() => navigation.navigate('ForgotPassword')} style={{ textAlign: 'right', fontSize: 14, color: '#fff' }}>Forgotten Password?</Text>
 
           <Button title="Continue" onPress={validate}/>
-          <Text style={{ textAlign: 'center', fontSize: 16,color: '#ffff' }}>Don't have an account? <Text onPress={() => navigation.navigate('Register')} style={{ fontWeight: '700', color: '#ffff' }}>Sign Up</Text></Text>
+          <Text style={{ textAlign: 'center', fontSize: 14,color: '#ffff' }}>Don't have an account? <Text onPress={() => navigation.navigate('Register')} style={{ fontWeight: '700', color: '#ffff' }}>Sign Up</Text></Text>
         </View>
       </ScrollView>
     </SafeAreaView>

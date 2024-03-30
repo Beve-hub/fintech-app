@@ -12,17 +12,15 @@ const Board = ({ navigation }) => {
       <Image source={require('../../assets/image/image_board2.png')}  style={{width:wp('100%'),height:hp('40%')}}/>  
       </View>
       
-      <View style={{position:'absolute',top:500, backgroundColor:'#fff',height:hp('30%'),width:wp('80%'),borderTopRightRadius:40, padding:20, marginTop:20}}>
+      <View style={{position:'absolute',top:450, right:0, backgroundColor:'#fff',height:hp('27%'),width:wp('60%'),borderTopLeftRadius:40,borderBottomLeftRadius:40, padding:20, }}>      
 
-      
-
-        <View style={{paddingVertical:25, gap:10}} >
-        <Text style={{fontWeight:'bold',fontSize:18,color:'#1C265C'}}>Transfer That Is Safe</Text>
+        <View style={{paddingBottom:15,gap:10 }} >
+        <Text style={{fontWeight:'bold',fontSize:16,color:'#1C265C'}}>Transfer That Is Safe</Text>
         <Text style={{fontSize:14,color:'#1C265C'}}>You have nothing to be scared about, we got you covered.</Text>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} activeOpacity={0.7}  style={{flexDirection: 'row',  display:'flex', justifyContent:'center', backgroundColor:'#1C265C', borderRadius:10, paddingVertical:12, width:wp('50%'),marginTop:10}}>
-          <Text style={{fontSize:14,  alignItems:'center', justifyContent:'center',display:'flex',color:'#fff' }}>Start Banking</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} activeOpacity={0.7}  style={{flexDirection: 'row',  display:'flex', justifyContent:'flex-end',  borderRadius:10,  marginTop:10}}>
+          <Text style={{fontSize:14,  alignItems:'center', justifyContent:'center',display:'flex',color:'#fff',backgroundColor:'#1C265C',padding:10, }}>Start Banking</Text>
         </TouchableOpacity>
 
       </View>

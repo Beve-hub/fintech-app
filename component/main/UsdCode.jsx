@@ -28,6 +28,24 @@ const UsdCode = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [selectedBank, setSelectedBank] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
+
+ 
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+  const getUserDetails = async () => {
+    try {
+      const userData = await AsyncStorage.getItem("user");
+      if (userData) {
+        setUserDetails(JSON.parse(userData));
+      }
+    } catch (error) {
+      console.error("Error getting user details:", error);
+    }
+  };
 
   const copyToClipboard = () => {
     const codeToCopy = JSON.stringify(" *400*000*2356#");
@@ -179,7 +197,7 @@ const UsdCode = ({ navigation }) => {
           <View
             style={{
               backgroundColor: "#10194E",
-              height: "70%",
+              height: "100%",
               width: "100%",
               marginTop: "90%",
             }}
@@ -189,10 +207,14 @@ const UsdCode = ({ navigation }) => {
                 flexDirection: "row",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "flex-end",
+                justifyContent: "space-between",
                 margin: 20,
               }}
             >
+              <View>
+              <Text style={{ color: "white", fontSize: 12, fontWeight:'medium' }}>{userDetails?.email}</Text>
+              <Text style={{ color: "#FF2E63", fontSize: 16, fontWeight:'bold' }}><FontAwesome6 name="naira-sign" size={15} color="#FF2E63" />{amount.length === 0 ? "0.00" : formatAmountWithCommas(amount)}</Text>
+              </View>
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => setModal(!modal)}
@@ -205,21 +227,15 @@ const UsdCode = ({ navigation }) => {
               </TouchableOpacity>
             </View>
 
-            <View style={{ marginHorizontal: 40, gap: 10 }}>
-              <Text style={{ color: "white", fontSize: 14 }}>
+
+
+              
+            <View style={{ marginHorizontal: 40, marginVertical: 30, gap: 20 }}>            
+              <Text style={{ color: "#ededed90", fontSize: 14 }}>
                 Select your bank to begin payment
               </Text>
               <Dropdown
-                style={[
-                  {
-                    height: 40,
-                    borderColor: "gray",
-                    borderWidth: 0.5,
-                    borderRadius: 8,
-                    paddingHorizontal: 8,
-                  },
-                  isFocus && { borderColor: "blue" },
-                ]}
+                style={[ { height: 40, borderColor: "gray", borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 8, },isFocus && { borderColor: "blue" },]}
                 placeholderStyle={{ fontSize: 16, color: "white" }}
                 selectedTextStyle={{ fontSize: 16, color: "white" }}
                 inputSearchStyle={{ height: 40, fontSize: 16 }}
@@ -232,13 +248,10 @@ const UsdCode = ({ navigation }) => {
                 value={selectedBank}
                 onFocus={() => setIsFocus(true)}
                 onBlur={() => setIsFocus(false)}
-                onChange={(item) => {
-                  setSelectedBank(item.name);
-                }}
-              />
+                onChange={(item) => { setSelectedBank(item.name); }}/>
 
-              <View>
-                <Text style={{ color: "white", fontSize: 14 }}>
+              <View style={{backgroundColor: "#010A43",padding: 10,}}>
+                <Text style={{ color: "#ededed90", fontSize: 14 }}>
                   Dial the code below on your mobile phone to complete payment.
                 </Text>
                 <View
@@ -247,10 +260,11 @@ const UsdCode = ({ navigation }) => {
                     alignItems: "center",
                     justifyContent: "center",
                     gap: 20,
-                    paddingVertical: 5,
-                    backgroundColor: "#010A43",
+                    paddingVertical: 4,
                     borderRadius: 10,
-                    marginVertical: 20,
+                  borderColor: "#fff",
+                  borderWidth: 1,
+                    marginVertical: 20,                   
                   }}
                 >
                   <Text
@@ -278,21 +292,14 @@ const UsdCode = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>
               </View>
+
+              <View>
               <TouchableOpacity
                 activeOpacity={0.7}
                 
                 style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  paddingHorizontal: 25,
-                  paddingVertical: 10,
-                  marginVertical: 10,
-                  borderRadius: 10,
-                  borderColor: "#fff",
-                  borderWidth: 1,
-                }}
-              >
+                  flexDirection: "row", alignItems: "center",justifyContent: "center", paddingHorizontal: 25,
+                  paddingVertical: 10, marginVertical: 10, borderRadius: 10, borderColor: "#fff", borderWidth: 1, }} >
                 <Text
                   style={{ color: "#fff",  fontSize: 16 }}
                 >
@@ -301,25 +308,15 @@ const UsdCode = ({ navigation }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                activeOpacity={0.7}
-                
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  paddingHorizontal: 25,
-                  paddingVertical: 10,
-                  borderRadius: 10,
-                  borderColor: "#fff",
-                  borderWidth: 1,
-                 gap:10
-                }}
-              >
+                activeOpacity={0.7}                
+                style={{ flexDirection: "row",alignItems: "center", justifyContent: "center", paddingHorizontal: 25,  paddingVertical: 10,borderRadius: 10, borderColor: "#fff", borderWidth: 1,  gap:10}} >
                  <FontAwesome6 name="arrow-right-arrow-left" size={20} color="white"  />
                 <Text  style={{ color: "#fff", fontSize: 16,  }}  >                 
                   Change payment method
                 </Text>
               </TouchableOpacity>
+              </View>
+
             </View>
           </View>
         </View>

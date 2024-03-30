@@ -128,12 +128,12 @@ const Home = ({ navigation }) => {
         amountColor = 'white';  
     }
     return (
-      <View style={{ flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding:15, backgroundColor:'#858EC550',}}>
-        <View style={{ flexDirection: "row", display: "flex", alignItems: "center",  gap: 15,}}>
+      <View style={{ flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding:10, backgroundColor:'#858EC550',}}>
+        <View style={{ flexDirection: "row", display: "flex", alignItems: "center",  gap: 10,}}>
         <Image source={item.image} style={{width:wp(10),height:wp(10)}}/>
         <View style={{gap:10}}>
-        <Text style={{color:'#858EC5', fontWeight:'bold',fontSize:16}}>{item.name}</Text>
-        <View style={{...styles.amount, backgroundColor: amountColor, flexDirection:'row', display:'flex', alignItems:'center', justifyContent:'flex-start',  paddingLeft:15, paddingVertical:2, gap:5, borderRadius:20}}>
+        <Text style={{color:'#858EC5', fontWeight:'bold',fontSize:14}}>{item.name}</Text>
+        <View style={{...styles.amount, backgroundColor: amountColor, flexDirection:'row', display:'flex', alignItems:'center', justifyContent:'flex-start',  paddingLeft:15,  gap:5, borderRadius:20}}>
         <Text >{statusIcon}</Text>
         <Text style={{color:'#fff'}}>{item.status}</Text>
         </View>
@@ -153,6 +153,7 @@ const Home = ({ navigation }) => {
 
       }}
     >
+      <ScrollView>
       <StatusBar style="light" />
       <View
         style={{
@@ -225,7 +226,7 @@ const Home = ({ navigation }) => {
             style={{
               color: "#fff",
               paddingHorizontal: 25,
-              paddingVertical: 15,
+              paddingVertical: 12,
               borderRadius: 10,
               borderColor: "#212A6B",
               borderWidth: 1,
@@ -243,7 +244,7 @@ const Home = ({ navigation }) => {
             style={{
               color: "#fff",
               paddingHorizontal: 30,
-              paddingVertical: 15,
+              paddingVertical: 12,
               borderRadius: 10,
               borderColor: "#212A6B",
               borderWidth: 1,
@@ -268,24 +269,7 @@ const Home = ({ navigation }) => {
           paddingHorizontal: 10
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              width: wp(15),
-              height: hp(0.8),
-              backgroundColor: "#426DDC",
-              borderRadius: 20,
-              margin: 10,
-            }}
-          ></Text>
-        </View>
+       
 
         <View
           style={{
@@ -293,10 +277,10 @@ const Home = ({ navigation }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            paddingHorizontal: 10,
+            padding: 10,
           }}
         >
-          <Text style={{ color: "#fff" }}>All Transactions</Text>
+          <Text style={{ color: "#4E589F" }}>All Transactions</Text>
 
           <View
             style={{
@@ -308,18 +292,8 @@ const Home = ({ navigation }) => {
               gap: 10,
             }}
           >
-            <Text style={{ color: "#4E589F" }}>Sort by:</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={{ color: "#fff" }}>Recent</Text>
-              <Feather name="chevron-down" size={20} color="#fff" />
-            </View>
+            <Text style={{ color: "#fff"  }}>See All</Text>
+            
           </View>
         </View>
 
@@ -336,7 +310,7 @@ const Home = ({ navigation }) => {
       
       </View>
 
-
+      </ScrollView>
 
          <Modal
         animationType="slide"
