@@ -95,9 +95,9 @@ const Auth = () => {
   return (
     < NavigationContainer >
       <Stack.Navigator>   
-      <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />
+      
         <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>        
-        
+        <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />
         <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
         <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
