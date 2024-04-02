@@ -51,7 +51,7 @@ const Login = ({ navigation }) => {
               'user', 
               JSON.stringify({ ...userData, loggedIn: true })
             );
-            navigation.navigate("Home")
+            navigation.navigate("TabGroup")
           } else {
             Alert.alert('Error', 'Invalid email or password');
           }

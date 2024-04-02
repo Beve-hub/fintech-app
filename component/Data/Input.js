@@ -47,9 +47,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
          paddingHorizontal:15,
          alignItems:'center',
-        height:40,
+        height:45,
          backgroundColor: '#ffff',
-          borderRadius:10,
+         
+         
     },
    
   });

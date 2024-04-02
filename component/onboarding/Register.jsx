@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { View, Text, SafeAreaView, ScrollView, Keyboard, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import PhoneInput from "react-native-phone-number-input";
 import Input from '../Data/Input';
 import Button from '../Data/Button';
 import Loader from '../Data/Loader';
 import { StatusBar } from "expo-status-bar";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -16,10 +17,10 @@ const Register = ({ navigation }) => {
     fullName: '',
     password: '',
     phoneNumber: '',
-    
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const phoneInput = useRef(null);
   
 
   const validate = () => {
@@ -75,6 +76,9 @@ const Register = ({ navigation }) => {
 
   const handleOnChange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
+    if (input === 'phoneNumber') {
+      setErrors(prevState => ({...prevState, [input]: ''}));
+    }
   };
 
   const handleError = (errorMessage, input) => {
@@ -93,7 +97,7 @@ const Register = ({ navigation }) => {
         <Text style={{ fontSize: 35, fontWeight: '700', color: '#fff' }}>Register</Text>
         <Text style={{ fontSize: 14, fontWeight: '400', color: '#ffff' }}>Your first time, Let's get to know you more!</Text>
 
-        <View style={{ marginVertical: 40 }}>
+        <View style={{ marginVertical: 20 }}>
           <Input
             label="Full Name"
             placeholder="fullName"
@@ -109,16 +113,21 @@ const Register = ({ navigation }) => {
             error={errors.email}
             onFocus={() => { handleError(null, 'email'); }}
             onChangeText={(text) => handleOnChange(text, 'email')} />
-      
-          <Input
-            label="Phone Number"
-            placeholder="Phone Number"
-            error={errors.phoneNumber}
-            keyboardType="numeric"
-            onFocus={() => {
-              handleError(null, 'phoneNumber');
-            }}
-            onChangeText={(text) => handleOnChange(text, 'phoneNumber')} />
+              
+          <View>
+            <Text style={{marginVertical:5, fontSize:14, color:'#ffff', fontWeight:700, marginVertical:6}}>Phone Number</Text>
+          <PhoneInput
+            defaultValue={inputs.phoneNumber}
+            defaultCode="US"
+            layout="first"
+            onChangeText={(text) => handleOnChange(text, 'phoneNumber')}
+            containerStyle={{ marginTop: 10, marginBottom: 10, height:hp(7),width:wp('88%') }}
+            ref={phoneInput}
+          />
+          {errors.phoneNumber && <Text style={{ color: '#B40404' }}>{errors.phoneNumber}</Text>}
+
+            
+          </View>    
        
           <Input
             label="Password"
