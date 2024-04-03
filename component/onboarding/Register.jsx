@@ -67,7 +67,7 @@ const Register = ({ navigation }) => {
 
       try {
         AsyncStorage.setItem('user', JSON.stringify(inputs));
-        navigation.navigate('Login');
+        navigation.navigate('Pin');
       } catch (error) {
         Alert.alert('Error', 'Something went wrong');
       }
@@ -118,7 +118,7 @@ const Register = ({ navigation }) => {
             <Text style={{marginVertical:5, fontSize:14, color:'#ffff', fontWeight:700, marginVertical:6}}>Phone Number</Text>
           <PhoneInput
             defaultValue={inputs.phoneNumber}
-            defaultCode="US"
+            defaultCode="NG"
             layout="first"
             onChangeText={(text) => handleOnChange(text, 'phoneNumber')}
             containerStyle={{ marginTop: 10, marginBottom: 10, height:hp(7),width:wp('88%') }}

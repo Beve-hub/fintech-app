@@ -153,7 +153,7 @@ const Home = ({ navigation }) => {
 
       }}
     >
-      <ScrollView>
+     
       <StatusBar style="light" />
       <View
         style={{
@@ -184,6 +184,7 @@ const Home = ({ navigation }) => {
          <Ionicons name="notifications-outline" size={22} color="white" />
         </TouchableOpacity>
       </View>
+
       <View
         style={{
           flexDirection: "grid",
@@ -232,9 +233,7 @@ const Home = ({ navigation }) => {
               borderWidth: 1,
             }}
           >
-            <Text
-              style={{ color: "#426DDC", fontWeight: "bold", fontSize: 16 }}
-            >
+            <Text style={{ color: "#426DDC", fontWeight: "bold", fontSize: 16 }} >
               Add Money
             </Text>
           </TouchableOpacity>
@@ -258,15 +257,26 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      
+      <View
+      style={{flexDirection: "row",
+        display: "flex", alignItems: "center", justifyContent: "space-between", padding: 10,}}>
+
+          <TouchableOpacity style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            <Ionicons name="call" size={24} color="black" />
+            <Text style={{color:'#ffff', fontWeight:'bold'}}>Airtime</Text>            
+          </TouchableOpacity>
+        </View>
+
 
       <View
         style={{
           backgroundColor: "#10194B",
-          height: hp("80%"),
-          marginTop: 70,
+          marginTop: 170,
           borderTopEndRadius: 20,
           borderTopStartRadius: 20,
-          paddingHorizontal: 10
+          paddingHorizontal: 10,
+          height:hp('32%')
         }}
       >
        
@@ -278,11 +288,14 @@ const Home = ({ navigation }) => {
             alignItems: "center",
             justifyContent: "space-between",
             padding: 10,
+            
           }}
         >
           <Text style={{ color: "#4E589F" }}>All Transactions</Text>
 
-          <View
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('Transaction')}
             style={{
               flexDirection: "row",
               display: "flex",
@@ -294,7 +307,7 @@ const Home = ({ navigation }) => {
           >
             <Text style={{ color: "#fff"  }}>See All</Text>
             
-          </View>
+          </TouchableOpacity>
         </View>
 
        
@@ -304,13 +317,13 @@ const Home = ({ navigation }) => {
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={true}
             VerticalScroll={true}
-            contentContainerStyle={{gap:10, paddingVertical:20,}}
+            contentContainerStyle={{gap:10, paddingVertical:10,}}
           />
       
       
       </View>
 
-      </ScrollView>
+      
 
          <Modal
         animationType="slide"

@@ -18,6 +18,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import Profile from './component/main/Profile';
 import CardTransfer from './component/main/CardTransfer';
 import UsdCode from './component/main/UsdCode';
+import Pin from './component/onboarding/Pin';
+import Funds from './component/main/Funds';
 
 
 const Stack = createStackNavigator();
@@ -94,20 +96,22 @@ function TabGroup() {
 const Auth = () => {
   return (
     < NavigationContainer >
-      <Stack.Navigator>   
-      
-        <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>        
-        <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />
+      <Stack.Navigator> 
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+      <Stack.Screen name="Transaction" component={Transaction} options={{ headerShown: false }}/>
+      <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />      
+       <Stack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>        
+        <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>   
         <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
         <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name="Board" component={Board} options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>      
         <Stack.Screen name="Request" component={Request} options={{ headerShown: false }}/>
         <Stack.Screen name="Receipt" component={Receipt} options={{ headerShown: false }}/>   
         <Stack.Screen name="UsdCode" component={UsdCode} options={{ headerShown: false }}/>   
-        <Stack.Screen name="CardTransfer" component={CardTransfer} options={{ headerShown: false }}/>        
+        <Stack.Screen name="Funds" component={Funds} options={{ headerShown: false }}/>   
+       <Stack.Screen name="CardTransfer" component={CardTransfer} options={{ headerShown: false }}/>       
       </Stack.Navigator>
     </ NavigationContainer >
   )

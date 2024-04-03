@@ -110,7 +110,7 @@ const UsdCode = ({ navigation }) => {
         >
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate("TabGroup")}
+            onPress={() => navigation.navigate("Request")}
             style={{
               backgroundColor: "#426DDC50",
               width: wp(10),

@@ -117,7 +117,7 @@ const Request = ({navigation}) => {
 
          <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('CardTransfer')}
+          onPress={() => navigation.navigate('Funds')}
            style={{padding:15, backgroundColor: "#212A6B",  flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:20 ,borderRadius:10,}}>
           <View style={{  flexDirection:'row',alignItems:'center',justifyContent:'flex-start',gap:20 }}>
           <View style={{  backgroundColor: '#fff', width: wp(10), height: hp(5), flexDirection:'row',alignItems:'center',justifyContent:'center',borderRadius:20, }}>
