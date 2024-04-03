@@ -10,7 +10,8 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import DialPad from '../Data/DialPad';
 import Loader from "../Data/Loader";
@@ -258,21 +259,47 @@ const Home = ({ navigation }) => {
         </View>
       </View>
       
-      <View
-      style={{flexDirection: "row",
-        display: "flex", alignItems: "center", justifyContent: "space-between", padding: 10,}}>
 
-          <TouchableOpacity style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
-            <Ionicons name="call" size={24} color="black" />
-            <Text style={{color:'#ffff', fontWeight:'bold'}}>Airtime</Text>            
+      <View style={{marginHorizontal:10,marginVertical:10}}>
+        <View style={{flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding: 10, gap:10, borderRadius:10}}> 
+          <Text style={{color:'#ffff', fontWeight:'bold',fontSize:18}}>Bills</Text>
+          <TouchableOpacity 
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('Bills')}
+          style={{flexDirection: "row", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            <Text style={{color:'#ffff', }}>View All</Text>     
+            <Entypo name="chevron-small-right" size={24} color="white" />                           
           </TouchableOpacity>
         </View>
+      
+      <View  style={{flexDirection: "row", display: "flex", alignItems: "center", justifyContent: "space-between", marginHorizontal: 10,gap:10}}>
+      <TouchableOpacity 
+          activeOpacity={0.7}
+            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            <Ionicons name="call" size={16} color="white" />
+            <Text style={{color:'#ffff', fontWeight:'bold'}}>Airtime</Text>            
+          </TouchableOpacity>
+          <TouchableOpacity 
+          activeOpacity={0.7}
+            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  paddingVertical: 10,paddingHorizontal: 20, gap:10, borderRadius:10}}>            
+            <MaterialCommunityIcons name="database" size={16} color="white" />
+            <Text style={{color:'#ffff', fontWeight:'bold'}}>Buy Data</Text>            
+          </TouchableOpacity>
+          <TouchableOpacity 
+          activeOpacity={0.7}
+            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            <MaterialIcons name="sports-soccer" size={16} color="white" />
+            <Text style={{color:'#ffff', fontWeight:'bold'}}>Betting</Text>            
+          </TouchableOpacity>
+         
+        </View>
 
+        </View>
 
-      <View
+        <View
         style={{
           backgroundColor: "#10194B",
-          marginTop: 170,
+          marginTop: 40,
           borderTopEndRadius: 20,
           borderTopStartRadius: 20,
           paddingHorizontal: 10,
