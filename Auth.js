@@ -20,6 +20,11 @@ import CardTransfer from './component/main/CardTransfer';
 import UsdCode from './component/main/UsdCode';
 import Pin from './component/onboarding/Pin';
 import Funds from './component/main/Funds';
+import AirtimeDetails from './component/main/Airtime/AirtimeDetails';
+import CableTv from './component/main/Cable/CableTv';
+import DataPurchase from './component/main/DataPurchase/DataPurchase';
+import ElectricBills from './component/main/ElectricBIlls/ElectricBills';
+import Betting from './component/main/Betting/Betting';
 
 
 const Stack = createStackNavigator();
@@ -97,12 +102,13 @@ const Auth = () => {
   return (
     < NavigationContainer >
       <Stack.Navigator> 
-      
-      <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} />      
+      <Stack.Screen name="TabGroup" component={TabGroup} options={{ headerShown: false }} /> 
+      <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} /> 
+      <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>  
+           
        <Stack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>    
        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-        <Stack.Screen name="Transaction" component={Transaction} options={{ headerShown: false }}/>    
-        <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }}/>   
+        <Stack.Screen name="Transaction" component={Transaction} options={{ headerShown: false }}/>             
         <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}/>
         <Stack.Screen name="Send" component={Send} options={{ headerShown: false }}/>
         <Stack.Screen name="Board" component={Board} options={{ headerShown: false }}/>
@@ -114,6 +120,12 @@ const Auth = () => {
         <Stack.Screen name="Funds" component={Funds} options={{ headerShown: false }}/>   
        <Stack.Screen name="CardTransfer" component={CardTransfer} options={{ headerShown: false }}/>     
        <Stack.Screen name="Bills" component={Bills} options={{ headerShown: false }}/> 
+       <Stack.Screen name="Betting" component={Betting} options={{ headerShown: false }}/> 
+      <Stack.Screen name="ElectricBills" component={ElectricBills} options={{ headerShown: false }}/> 
+      <Stack.Screen name="CableTv" component={CableTv} options={{ headerShown: false }}/> 
+      <Stack.Screen name="DataPurchase" component={DataPurchase} options={{ headerShown: false }}/> 
+      <Stack.Screen name="AirtimeDetails" component={AirtimeDetails} options={{ headerShown: false }}/> 
+       
       </Stack.Navigator>
     </ NavigationContainer >
   )

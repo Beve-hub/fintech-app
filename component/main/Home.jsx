@@ -263,10 +263,11 @@ const Home = ({ navigation }) => {
       <View style={{marginHorizontal:10,marginVertical:10}}>
         <View style={{flexDirection: "row", display: "flex", alignItems: "center", justifyContent:'space-between', padding: 10, gap:10, borderRadius:10}}> 
           <Text style={{color:'#ffff', fontWeight:'bold',fontSize:18}}>Bills</Text>
+          
           <TouchableOpacity 
           activeOpacity={0.7}
           onPress={() => navigation.navigate('Bills')}
-          style={{flexDirection: "row", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+          style={{flexDirection: "row", display: "flex", alignItems: "center",  paddingVertical: 10, gap:10, borderRadius:10}}>            
             <Text style={{color:'#ffff', }}>View All</Text>     
             <Entypo name="chevron-small-right" size={24} color="white" />                           
           </TouchableOpacity>
@@ -275,19 +276,19 @@ const Home = ({ navigation }) => {
       <View  style={{flexDirection: "row", display: "flex", alignItems: "center", justifyContent: "space-between", marginHorizontal: 10,gap:10}}>
       <TouchableOpacity 
           activeOpacity={0.7}
-            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            onPress={() => navigation.navigate('AirtimeDetails')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
             <Ionicons name="call" size={16} color="white" />
             <Text style={{color:'#ffff', fontWeight:'bold'}}>Airtime</Text>            
           </TouchableOpacity>
           <TouchableOpacity 
           activeOpacity={0.7}
-            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  paddingVertical: 10,paddingHorizontal: 20, gap:10, borderRadius:10}}>            
+            onPress={() => navigation.navigate('DataPurchase')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  paddingVertical: 10,paddingHorizontal: 20, gap:10, borderRadius:10}}>            
             <MaterialCommunityIcons name="database" size={16} color="white" />
             <Text style={{color:'#ffff', fontWeight:'bold'}}>Buy Data</Text>            
           </TouchableOpacity>
           <TouchableOpacity 
           activeOpacity={0.7}
-            onPress={() => navigation.navigate('Transaction')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
+            onPress={() => navigation.navigate('Betting')}  style={{flexDirection: "row",backgroundColor: "#10194B", display: "flex", alignItems: "center",  padding: 10, gap:10, borderRadius:10}}>            
             <MaterialIcons name="sports-soccer" size={16} color="white" />
             <Text style={{color:'#ffff', fontWeight:'bold'}}>Betting</Text>            
           </TouchableOpacity>

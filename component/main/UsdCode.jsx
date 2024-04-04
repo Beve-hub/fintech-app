@@ -4,8 +4,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Clipboard,
-  Modal,
-  Picker,
+  Modal,  
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
