@@ -2,15 +2,14 @@ import { View,  Text, Image, TouchableOpacity,  SafeAreaView,  ScrollView,  } fr
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import {  widthPercentageToDP as wp,  heightPercentageToDP as hp,} from "react-native-responsive-screen";
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ImagePicker from 'react-native-image-picker';
+import { EvilIcons } from '@expo/vector-icons';
+
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState(null);
@@ -44,15 +43,28 @@ const Profile = () => {
       style={{
         backgroundColor: "#010A43",
         width: wp("100%"),
-        height: hp("150%"), }}>
+        height: hp("150%"), }}
+        stickyHeaderIndices={[1]} 
+        >
           <StatusBar style="light" />
 
-          <View style={{backgroundColor: "#010A43", flexDirection:'row',  justifyContent:'space-between', alignItems:'center', marginTop:60,marginHorizontal:30}}>
-          <Text style={{ color:'white', fontSize:20  }}>{userDetails?.userName}</Text>
+          <View style={{backgroundColor: "#010A43",  marginTop:60,position: "sticky",  top: 0, paddingVertical:10,   zIndex: 1,}}>
+            
+            <View style={{ flexDirection:'row',  justifyContent:'space-between', alignItems:'center',marginHorizontal:30, }}>
+
+            <Text style={{ color:'white', fontSize:20  }}>{userDetails?.userName}</Text>
           <View>
-          {editPro && ( 
-           <Image source={require('../../assets/image/image_pro5.png')} style={{width: 50,  height: 50, borderRadius: 100,}} />
-          )}
+         
+          <Image source={editPro ? { uri: editPro } : require('../../assets/image/image_profile.jpg')} style={{ width: 60, height: 60, borderRadius: 100, }} />
+        
+          <TouchableOpacity
+          onPress={selectImage}
+           style={{position:'absolute',backgroundColor:'#ededed', flexDirection:'row', alignItems:'center', justifyContent:'center',borderRadius:50, height:20, width:20,left:35,top:35}}>
+          <EvilIcons name="pencil" size={24} color="black" />
+          </TouchableOpacity>
+
+            </View>
+          
           </View>
           </View>
 
@@ -92,7 +104,7 @@ const Profile = () => {
             </View>
             </View>
 
-            <View style={{marginHorizontal:20,gap:10,marginVertical:20,}}>
+            <View style={{marginHorizontal:20,gap:10,marginVertical:15,}}>
             <Text style={{ color:'white', fontSize:14 }}>Security</Text>
             <View style={{backgroundColor:"#426DDC", padding:15, borderRadius:10,gap:10 }}>
 
@@ -124,7 +136,7 @@ const Profile = () => {
             </View>
             </View>
 
-            <View style={{marginHorizontal:20,gap:10,marginVertical:20,}}>
+            <View style={{marginHorizontal:20,gap:10,marginVertical:15,}}>
             <Text style={{ color:'white', fontSize:14 }}>About</Text>
             <View style={{backgroundColor:"#426DDC", padding:15, borderRadius:10,gap:10 }}>
 
@@ -145,7 +157,7 @@ const Profile = () => {
             </View>
             </View>
 
-            <View style={{marginHorizontal:20,gap:10,marginVertical:20,}}>
+            <View style={{marginHorizontal:20,gap:10,marginVertical:15,}}>
             <TouchableOpacity style={{flexDirection:'row', alignItems:'center',justifyContent:'space-between',backgroundColor:"#426DDC",padding:15, borderRadius:10,gap:10 }}>
               <View style={{flexDirection:'row', alignItems:'center',justifyContent:'space-between'}}>
               <MaterialIcons name="logout" size={22} color='#FF2E63' />
